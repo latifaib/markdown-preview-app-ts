@@ -41,6 +41,15 @@ This project demonstrates modern React patterns, React Query for API state manag
     npm run dev
 4. Open the app in your browser at http://localhost:5173
 
+## Deployment Instructions
+   I hosted the app on Netlify. The production-ready files are in the dist folder.
+   # Steps to deploy
+1. Build the production version:
+     npm run build 
+2. Deploy the dist folder to Netlify     
+ - Netlify automatically redeploy when the repository is updated on Github.
+  Live site URL: https://verdant-sfogliatella-fda561.netlify.app/
+
 ## Available Scripts
 - npm run dev — Starts the development server.
 - npm run build — Builds production-ready files.
@@ -74,7 +83,7 @@ Save Markdown:
 
 Load Markdown:
 - Method: GET /posts/1
-- Returns: JSON object with body containing markdown text Note: This API is for demonstration purposes only. Local storage is now the default load/save source.
+- Returns: JSON object with body containing markdown text Note: Local storage is now the default load/save source.
 
 ## Screenshots
 
@@ -103,3 +112,8 @@ Load Markdown:
 - Complete keyboard navigation and ARIA landmark support.
 - User authentication for saving/loading multiple Markdown files via API.
 - Undo/redo functionality in the editor.
+
+## Submission Info
+- GitHub Repository: https://github.com/latifaib/markdown-preview-app
+- Live App: https://verdant-sfogliatella-fda561.netlify.app/
+- Challenges & Solutions: see "Known Issues / Limitations" and "Future Improvements" sections.

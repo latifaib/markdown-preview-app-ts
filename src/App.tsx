@@ -10,40 +10,42 @@ import { useMutation } from "@tanstack/react-query";
 import "./index.css";
 
 function App() {
-  // Default markdown text or load from localStorage
-  const [markdown, setMarkdown] = useState(
+  // State
+  const [markdown, setMarkdown] = useState<string>(
     localStorage.getItem("markdown") ||
-      "# Welcome to My Markdown Preview App\n\n```html I'm a Frontend Engineer!```"
+      "# Welcome to My Markdown Preview App\n\n```html\nI'm a Frontend Engineer!```"
   );
-  const [statusMessage, setStatusMessage] = useState(""); // screen reader status
+  const [statusMessage, setStatusMessage] = useState<string>("");
 
-  // Save markdown to API (optional demo)
+  // React Query mutation
   const saveMutation = useMutation({
-    mutationFn: async (content) => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ title: "Markdown Doc", body: content }),
-        }
-      );
-      if (!response.ok) throw new Error("Failed to save");
-      return response.json();
-    },
-    onSuccess: () => setStatusMessage("Markdown saved successfully!"),
-    onError: () => setStatusMessage("Failed to save markdown!"),
-  });
+  mutationFn: async (content: string) => {
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/posts",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: "Markdown Doc", body: content }),
+      }
+    );
 
-  // Save button handler
+    if (!response.ok) {
+      throw new Error("Failed to save");
+    }
+  },
+  onSuccess: () => setStatusMessage("Markdown saved successfully!"),
+  onError: () => setStatusMessage("Failed to save markdown!"),
+});
+
+
+  // Handlers
   const handleSave = () => {
-    setStatusMessage(""); // reset previous message
+    setStatusMessage("");
     saveMutation.mutate(markdown);
   };
 
-  // Load button handler (localStorage only)
   const handleLoad = () => {
-    setStatusMessage(""); // reset previous message
+    setStatusMessage("");
     const savedMarkdown = localStorage.getItem("markdown");
     if (savedMarkdown) {
       setMarkdown(savedMarkdown);
@@ -108,6 +110,7 @@ function App() {
                 />
               }
             />
+             <Route path="/" element={<EditorPage markdown={markdown} setMarkdown={setMarkdown} />} />
             <Route path="/posts" element={<PostsPage />} />
             <Route path="/error-test" element={<ErrorTestPage />} />
             <Route path="*" element={<NotFoundPage />} />
@@ -119,4 +122,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,9 +1,13 @@
-import React from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/atom-one-dark.css";
 
-export default function Preview({ markdown, isLoading }) {
+interface PreviewProps {
+  markdown: string;
+  isLoading?: boolean;
+}
+
+export default function Preview({ markdown, isLoading = false }: PreviewProps) {
   return (
     <section
       aria-label="Markdown preview"
@@ -25,4 +29,3 @@ export default function Preview({ markdown, isLoading }) {
     </section>
   );
 }
-

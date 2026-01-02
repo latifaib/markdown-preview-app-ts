@@ -4,7 +4,12 @@ import { languages } from "@codemirror/language-data";
 import { oneDark } from "@codemirror/theme-one-dark";
 import { EditorView } from "@codemirror/view";
 
-export default function Editor({ value, onChange }) {
+interface EditorProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+export default function Editor({ value, onChange }: EditorProps) {
   return (
     <div
       className="w-full h-full border rounded-lg overflow-hidden focus-within:ring-2 
@@ -16,7 +21,7 @@ export default function Editor({ value, onChange }) {
         extensions={[
           markdown({ base: markdownLanguage, codeLanguages: languages }),
         ]}
-        onChange={onChange}
+        onChange={(value:string) => onChange(value)}
         theme={
           document.documentElement.classList.contains("dark")
             ? oneDark
@@ -32,4 +37,3 @@ export default function Editor({ value, onChange }) {
     </div>
   );
 }
-

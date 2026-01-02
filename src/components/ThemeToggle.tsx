@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(() => {
-    // Load initial theme from localStorage or system preference
-    if (localStorage.getItem("theme")) {
-      return localStorage.getItem("theme") === "dark";
-    }
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    const theme = localStorage.getItem("theme");
+    if (theme) return theme === "dark";
     return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
@@ -28,4 +26,5 @@ export default function ThemeToggle() {
     </button>
   );
 }
+
 

@@ -1,5 +1,3 @@
-export default function ErrorTestPage() {
-  // This will throw an error immediately
+export default function ErrorTestPage(): never {
   throw new Error("This is a test error!");
 }
-

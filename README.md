@@ -1,119 +1,88 @@
-# Markdown Preview App
+# Markdown Preview App (React + TypeScript)
 
 ## Project Description
-The **Markdown Preview App** is a React-based application that allows users to write Markdown text and see a live HTML preview in real-time.
+The Markdown Preview App is a React + TypeScript application that allows users to write Markdown text and see a live HTML preview in real-time.
+This project is a TypeScript conversion of my former Markdown Preview App built with JavaScript and React, refactored to improve type safety, maintainability, and developer experience while preserving the same core functionality and user experience.
 
-It supports:  
-- Side-by-side editor and preview on desktop, stacked layout for mobile.  
-- Real-time rendering of Markdown elements including headings, lists, code blocks, links, images, and bold/italic text.  
-- Syntax highlighting for code blocks.  
-- Save/load Markdown content to local storage or download/upload `.md` files.  
-- Integration with a remote API for demonstration.  
-- Light/dark theme toggle.  
-- Accessibility features including ARIA labels, keyboard navigation, and focus management.
+# It supports:
+- Side-by-side editor and preview on desktop, stacked layout for mobile.
+- Real-time rendering of Markdown elements including headings, lists, code blocks, links, images, and bold/italic text.
+- Syntax highlighting for code blocks.
+- Save/load Markdown content using local storage or download/upload .md files.
+- Light/dark theme toggle.
+- Responsive and accessible UI structure.
+   This project demonstrates modern React patterns, TypeScript integration, and component-based architecture.
 
-This project demonstrates modern React patterns, React Query for API state management, Tailwind CSS for styling, and accessible UI/UX practices.
+# Features
+- Markdown Editor: Type or paste Markdown with live preview.
+- Preview Panel: Displays rendered HTML output with syntax highlighting.
+- Local Storage Persistence: Automatically saves content across page reloads.
+- File Operations: Save Markdown to .md file and load from a local .md file.
+- Theme Toggle: Switch between light and dark mode.
+- Responsive Layout: Optimized for both desktop and mobile screens.
 
-## Features
-- **Markdown Editor:** Type or paste Markdown with live preview.  
-- **Preview Panel:** Displays HTML output with syntax highlighting.  
-- **Local Storage Persistence:** Automatically saves content as you type.  
-- **File Operations:** Save to `.md` file, load from local `.md` file.  
-- **API Integration:** Save/load Markdown content from a remote API.  
-- **Theme Toggle:** Switch between light and dark mode.  
-- **Accessibility:** ARIA labels, screen reader support, and focus management.
+# Installation and Setup
+ - Prerequisites
+   1. Node.js v18+
+   2. npm installed
 
+# Steps
+- Clone the repository:git clone https://github.com/latifaib/markdown-preview-app-ts.git
+cd markdown-preview-app-ts
+- Install dependencies:npm install
+- Run the development server:npm run dev
+- Open the app in your browser at:http://localhost:5173
 
-## Installation and Setup
+# Deployment Instructions
+The app can be deployed using Netlify or any static hosting provider.
+- Steps to deploy
+1. Build the production version: npm run build
+2. Deploy the generated dist folder to Netlify.
+    Netlify automatically redeploys when the GitHub repository is updated.
 
-### Prerequisites
-- Node.js v18+  
-- npm installed  
-
-### Steps
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/latifaib/markdown-preview.git
-   cd markdown-preview
-2. Install dependencies:
-    npm install
-3. Run the development server:
-    npm run dev
-4. Open the app in your browser at http://localhost:5173
-
-## Deployment Instructions
-   I hosted the app on Netlify. The production-ready files are in the dist folder.
-   # Steps to deploy
-1. Build the production version:
-     npm run build 
-2. Deploy the dist folder to Netlify     
- - Netlify automatically redeploy when the repository is updated on Github.
-  Live site URL: https://verdant-sfogliatella-fda561.netlify.app/
-
-## Available Scripts
+# Available Scripts
 - npm run dev — Starts the development server.
 - npm run build — Builds production-ready files.
-- npm run preview — Preview production build locally.
+- npm run preview — Preview the production build locally.
 
-## Technology Stack & Architecture
-## Stack:
-- React 19+ – Functional components and hooks.
-- React Router v7 – Navigation and routing.
-- React Query (Tanstack) – API fetching and state - management.
-- React Markdown + rehype-highlight – Markdown parsing and syntax highlighting.
-- Highlight.js – Code syntax highlighting.
-- Tailwind CSS (CDN) – Styling.
-- ARIA Attributes & Semantic HTML – Accessibility.
-- JavaScript – Core scripting language.
+# Technology Stack & Architecture
+- Stack
+1. React – Functional components and hooks.
+2. TypeScript – Static typing and improved maintainability.
+3. React Router – Client-side routing.
+4. Vite – Fast development and build tool.
+5. React Markdown + rehype-highlight – Markdown parsing and rendering.
+6. Highlight.js – Syntax highlighting for code blocks.
+7. Tailwind CSS – Styling and responsive layout.
+8. Local Storage API – Content persistence.
 
-## Architecture Decisions:
-- Editor and preview are separate components (Editor.jsx and Preview.jsx) for modularity.
-- React Query manages API state without using useEffect.
-- Local storage ensures persistence across page reloads.
-- File operations use Blob and FileReader APIs for download/upload.
+# Architecture Decisions
+- Editor and preview are separated into reusable components (Editor.tsx and Preview.tsx).
+- Application routing and layout are managed in App.tsx.
+- React hooks (useState, custom handlers) manage component state.
+- File operations use the Blob and FileReader APIs for download and upload functionality.
+- TypeScript interfaces and types are used to define component props and state clearly.
 
-## API Documentation
-This app demonstrates API integration using JSONPlaceholder.
-Base URL: https://jsonplaceholder.typicode.com/posts
+# Conversion Notes (JavaScript → TypeScript)
+- All .jsx files were converted to .tsx.
+- Component props and state were explicitly typed using TypeScript.
+- React hooks were updated with proper generic types.
+- CSS imports were handled using TypeScript module declarations.
+- The overall application logic and UI behavior were preserved during the conversion.
 
-Save Markdown:
-- Method: POST /posts:
-- Body: { "title": "Markdown Doc", body:"<markdown_content>" }
-- Returns: JSON object with saved content
+# Known Issues / Limitations
+- Syntax highlighting is limited to languages supported by Highlight.js.
+- Theme preference is not yet persisted across sessions.
+- Accessibility features can be further improved with additional testing.
 
-Load Markdown:
-- Method: GET /posts/1
-- Returns: JSON object with body containing markdown text Note: Local storage is now the default load/save source.
-
-## Screenshots
-
-### Theme Toggle
-![Light Theme Toggle on Desktop(can also change to Dark theme when toggle button is clicked)](public/assets/theme-toggle.jpg)
-
-### Save/Load Buttons in Header
-![Header Save/Load](public/assets/header-buttons.jpg)
-
-### Save/Load to File Buttons
-![Save to file and Add to file](public/assets/file-buttons.jpg)
-
-### Responsive Layout
-![Responsive Layout](public/assets/responsive-layout.jpg)
-
-
-## Known Issues / Limitations
-- API only returns placeholder content in French by default.
-- Live preview supports only languages enabled by rehype-highlight.
-- Accessibility features are partially implemented (further testing with screen readers recommended).
-
-## Future Improvements
-- Full multi-language syntax highlighting in editor.
-- Drag-and-drop support for .md files.
+# Future Improvements
 - Persist theme preference in local storage.
-- Complete keyboard navigation and ARIA landmark support.
-- User authentication for saving/loading multiple Markdown files via API.
+- Drag-and-drop support for .md files.
 - Undo/redo functionality in the editor.
+- Improved keyboard navigation and ARIA landmark support.
+- Optional API-based save/load for multiple Markdown documents.
 
-## Submission Info
-- GitHub Repository: https://github.com/latifaib/markdown-preview-app
-- Live App: https://verdant-sfogliatella-fda561.netlify.app/
-- Challenges & Solutions: see "Known Issues / Limitations" and "Future Improvements" sections.
+# Submission Info
+- GitHub Repository:https://github.com/latifaib/markdown-preview-app-ts
+- Live App:https://markdown-preview-app-ts.netlify.app/
+- Project Focus: JavaScript → TypeScript (React TS) conversion with responsive UI and component-based architecture
